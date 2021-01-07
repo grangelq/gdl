@@ -1,0 +1,305 @@
+(GUIDE) <
+	gdl_version = <"0.1">
+	id = <"ESC_HF_Guidelines_diagnosis">
+	concept = <"gt0001">
+	language = (LANGUAGE) <
+		original_language = <[ISO_639-1::en]>
+	>
+	description = (RESOURCE_DESCRIPTION) <
+		details = <
+			["en"] = (RESOURCE_DESCRIPTION_ITEM) <
+			>
+		>
+	>
+	definition = (GUIDE_DEFINITION) <
+		archetype_bindings = <
+			["gt0002"] = (ARCHETYPE_BINDING) <
+				archetype_id = <"openEHR-EHR-OBSERVATION.HF_ESC_Guidelines_diagnosis.v1">
+				domain = <"EHR">
+				elements = <
+					["gt0005"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0015]">
+					>
+					["gt0006"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0027]">
+					>
+					["gt0007"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0010]">
+					>
+					["gt0033"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0017]">
+					>
+					["gt0038"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0008]">
+					>
+					["gt0039"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0024]">
+					>
+					["gt0044"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0029]">
+					>
+				>
+			>
+			["gt0008"] = (ARCHETYPE_BINDING) <
+				archetype_id = <"openEHR-EHR-OBSERVATION.HF_ESC_Guidelines_diagnosis.v1">
+				domain = <"CDS">
+				elements = <
+					["gt0009"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0015]">
+					>
+					["gt0010"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0027]">
+					>
+					["gt0011"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0010]">
+					>
+					["gt0018"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0025]">
+					>
+					["gt0030"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0018]">
+					>
+					["gt0032"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0017]">
+					>
+					["gt0035"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0008]">
+					>
+					["gt0036"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0024]">
+					>
+					["gt0041"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0001]">
+					>
+					["gt0045"] = (ELEMENT_BINDING) <
+						path = <"/data[at0004]/events[at0006]/data[at0007]/items[at0029]">
+					>
+				>
+			>
+		>
+		rules = <
+			["gt0023"] = (RULE) <
+				when = <"!fired($gt0023)",...>
+				then = <"$gt0009=false", "$gt0011=true", "$gt0010=false">
+				priority = <13>
+			>
+			["gt0025"] = (RULE) <
+				when = <"$gt0007!=null",...>
+				then = <"$gt0011=$gt0007",...>
+				priority = <12>
+			>
+			["gt0026"] = (RULE) <
+				when = <"$gt0005!=null",...>
+				then = <"$gt0009=$gt0005",...>
+				priority = <11>
+			>
+			["gt0027"] = (RULE) <
+				when = <"$gt0006!=null",...>
+				then = <"$gt0010=$gt0006",...>
+				priority = <10>
+			>
+			["gt0028"] = (RULE) <
+				when = <"$gt0018==null", "($gt0009==true)||(($gt0011==false)||($gt0010==true))">
+				then = <"$gt0018=1|local::at0034|plasma NPs|", "$gt0030=1|local::at0019|suspected|">
+				priority = <9>
+			>
+			["gt0031"] = (RULE) <
+				when = <"$gt0018==null", "$gt0009==false", "$gt0011==true", "$gt0010==false">
+				then = <"$gt0018=0|local::at0033|other diagnoses |", "$gt0030=0|local::at0014|unlikely|">
+				priority = <8>
+			>
+			["gt0034"] = (RULE) <
+				when = <"$gt0018==1|local::at0034|plasma NPs|", "$gt0033!=null">
+				then = <"$gt0032=$gt0033",...>
+				priority = <7>
+			>
+			["gt0037"] = (RULE) <
+				when = <"$gt0032==true", "$gt0038!=null", "$gt0039!=null">
+				then = <"$gt0036=$gt0039", "$gt0035=$gt0038">
+				priority = <6>
+			>
+			["gt0040"] = (RULE) <
+				when = <"$gt0041==null", "($gt0035>=35)||($gt0036>=125)">
+				then = <"$gt0041=1|local::at0023|indicated|",...>
+				priority = <5>
+			>
+			["gt0042"] = (RULE) <
+				when = <"$gt0041==null", "$gt0035<25", "$gt0036<125">
+				then = <"$gt0041=0|local::at0021|not indicated|", "$gt0030=0|local::at0014|unlikely|">
+				priority = <4>
+			>
+			["gt0043"] = (RULE) <
+				when = <"($gt0032==false)||($gt0041==1|local::at0023|indicated|)", "$gt0044!=null">
+				then = <"$gt0045=$gt0044",...>
+				priority = <3>
+			>
+			["gt0046"] = (RULE) <
+				when = <"$gt0045==false",...>
+				then = <"$gt0030=2|local::at0020|confirmed|",...>
+				priority = <2>
+			>
+			["gt0047"] = (RULE) <
+				when = <"$gt0045==true",...>
+				then = <"$gt0030=0|local::at0014|unlikely|",...>
+				priority = <1>
+			>
+		>
+	>
+	ontology = (GUIDE_ONTOLOGY) <
+		term_definitions = <
+			["en"] = (TERM_DEFINITION) <
+				terms = <
+					["gt0001"] = (TERM) <
+						text = <"ESC HF Guidelines diagnosis">
+					>
+					["gt0003"] = (TERM) <
+						text = <"HF diagnosis status">
+						description = <"">
+					>
+					["gt0004"] = (TERM) <
+						text = <"Set defaults">
+					>
+					["gt0005"] = (TERM) <
+						text = <"Clinical examination clues">
+						description = <"">
+					>
+					["gt0006"] = (TERM) <
+						text = <"Physical examination clues">
+						description = <"">
+					>
+					["gt0007"] = (TERM) <
+						text = <"ECG results normal">
+						description = <"">
+					>
+					["gt0009"] = (TERM) <
+						text = <"Clinical examination clues CG">
+						description = <"">
+					>
+					["gt0010"] = (TERM) <
+						text = <"Physical examination clues CG">
+						description = <"">
+					>
+					["gt0011"] = (TERM) <
+						text = <"ECG results normal CG">
+						description = <"">
+					>
+					["gt0012"] = (TERM) <
+						text = <"Set clinical examination clues">
+					>
+					["gt0013"] = (TERM) <
+					>
+					["gt0014"] = (TERM) <
+						text = <"Set physical examination clues">
+					>
+					["gt0015"] = (TERM) <
+						text = <"Set ECG results">
+					>
+					["gt0016"] = (TERM) <
+						text = <"Step 1 assessment of HF probability">
+					>
+					["gt0017"] = (TERM) <
+					>
+					["gt0018"] = (TERM) <
+						text = <"HF or other diagnoses decision CG">
+						description = <"">
+					>
+					["gt0020"] = (TERM) <
+					>
+					["gt0021"] = (TERM) <
+						text = <"Step 2 natriuretic peptides">
+					>
+					["gt0022"] = (TERM) <
+						text = <"Plasma NPs routinely measured">
+						description = <"">
+					>
+					["gt0023"] = (TERM) <
+						text = <"Set default values">
+					>
+					["gt0024"] = (TERM) <
+						text = <"HF or other diagnoses decision">
+						description = <"">
+					>
+					["gt0025"] = (TERM) <
+						text = <"Set ECG results">
+					>
+					["gt0026"] = (TERM) <
+						text = <"Set Clinical examination">
+					>
+					["gt0027"] = (TERM) <
+						text = <"Set Physical examination">
+					>
+					["gt0028"] = (TERM) <
+						text = <"Step 1 HF or other diagnoses decision - suspected">
+					>
+					["gt0029"] = (TERM) <
+						text = <"Act HF unlikely">
+					>
+					["gt0030"] = (TERM) <
+						text = <"HF diagnosis status CG">
+						description = <"">
+					>
+					["gt0031"] = (TERM) <
+						text = <"Step 1 HF or  other diagnoses decision - unlikely">
+					>
+					["gt0032"] = (TERM) <
+						text = <"Plasma NPs routinely measured CG">
+						description = <"">
+					>
+					["gt0033"] = (TERM) <
+						text = <"Plasma NPs routinely measured">
+						description = <"">
+					>
+					["gt0034"] = (TERM) <
+						text = <"Set Plasma NPs measured">
+					>
+					["gt0035"] = (TERM) <
+						text = <"BNP results CG">
+						description = <"">
+					>
+					["gt0036"] = (TERM) <
+						text = <"NT-proBNP results CG">
+						description = <"">
+					>
+					["gt0037"] = (TERM) <
+						text = <"Set NTproBNP BNP results">
+					>
+					["gt0038"] = (TERM) <
+						text = <"BNP results">
+						description = <"">
+					>
+					["gt0039"] = (TERM) <
+						text = <"NT-proBNP results">
+						description = <"">
+					>
+					["gt0040"] = (TERM) <
+						text = <"Step 2 echocardio decision - indicated">
+					>
+					["gt0041"] = (TERM) <
+						text = <"Echocardio decision CG">
+						description = <"">
+					>
+					["gt0042"] = (TERM) <
+						text = <"Step 2 echocardio decision - not indicated (unlikely)">
+					>
+					["gt0043"] = (TERM) <
+						text = <"Set echocardio results">
+					>
+					["gt0044"] = (TERM) <
+						text = <"Echocardio results normal">
+						description = <"">
+					>
+					["gt0045"] = (TERM) <
+						text = <"Echocardio results normal CG">
+						description = <"">
+					>
+					["gt0046"] = (TERM) <
+						text = <"Step 3 HF diagnosis decision - confirmed">
+					>
+					["gt0047"] = (TERM) <
+						text = <"Step 3 HF diagnosis decision - unlikely">
+					>
+				>
+			>
+		>
+	>
+>
